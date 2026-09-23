@@ -276,6 +276,12 @@ const DEFAULT_CATEGORIES = [
                     this.setCurrentUser(target);
                     this.showToast(`Perfil alterado para ${target.name} (${target.role})`, 'info');
                     document.getElementById('quick-switch-menu').classList.add('hidden');
+                    const dashboardByRole = {
+                        client: 'client-dashboard',
+                        freelancer: 'freelancer-dashboard',
+                        admin: 'admin'
+                    };
+                    this.navigateTo(dashboardByRole[role]);
                 }
             }
 
@@ -296,6 +302,7 @@ const DEFAULT_CATEGORIES = [
 
                 this.renderNav();
                 this.refreshCurrentView();
+                document.getElementById('mobile-menu')?.classList.add('hidden');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
