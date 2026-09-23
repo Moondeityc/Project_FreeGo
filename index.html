@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FreelaHub - Plataforma de Freelancers</title>
-    <!-- Tailwind CSS -->
+    <!-- Bootstrap 5: base responsiva e componentes do framework -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Utilitários visuais já usados pelo protótipo durante a adaptação gradual -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -85,7 +86,7 @@
     </header>
 
     <!-- Main Content Area -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <main class="container-fluid flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <!-- Toast / Notification banner -->
         <div id="notification-toast" class="hidden fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 transition-all duration-300">
             <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
@@ -209,15 +210,15 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 pt-2 border-t border-slate-100">
                     <div class="relative">
                         <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
-                        <input type="text" id="filter-project-search" placeholder="Buscar por palavra-chave..." oninput="app.filterProjects()" class="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
+                        <input type="text" id="filter-project-search" placeholder="Buscar por palavra-chave..." oninput="app.filterProjects()" class="form-control w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
                     </div>
                     <div>
-                        <select id="filter-project-category" onchange="app.filterProjects()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none text-slate-700">
+                        <select id="filter-project-category" onchange="app.filterProjects()" class="form-select w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none text-slate-700">
                             <option value="">Todas as Categorias</option>
                         </select>
                     </div>
                     <div>
-                        <select id="filter-project-budget" onchange="app.filterProjects()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none text-slate-700">
+                        <select id="filter-project-budget" onchange="app.filterProjects()" class="form-select w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none text-slate-700">
                             <option value="">Qualquer Orçamento</option>
                             <option value="0-1000">Até R$ 1.000</option>
                             <option value="1000-3000">R$ 1.000 - R$ 3.000</option>
@@ -226,7 +227,7 @@
                         </select>
                     </div>
                     <div>
-                        <select id="filter-project-status" onchange="app.filterProjects()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none text-slate-700">
+                        <select id="filter-project-status" onchange="app.filterProjects()" class="form-select w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none text-slate-700">
                             <option value="">Todos os Status</option>
                             <option value="Publicado">Publicado</option>
                             <option value="Recebendo propostas">Recebendo propostas</option>
@@ -256,15 +257,15 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 pt-2 border-t border-slate-100">
                     <div class="relative">
                         <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
-                        <input type="text" id="filter-freelancer-search" placeholder="Nome ou habilidade..." oninput="app.filterFreelancers()" class="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
+                        <input type="text" id="filter-freelancer-search" placeholder="Nome ou habilidade..." oninput="app.filterFreelancers()" class="form-control w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
                     </div>
                     <div>
-                        <select id="filter-freelancer-area" onchange="app.filterFreelancers()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none text-slate-700">
+                        <select id="filter-freelancer-area" onchange="app.filterFreelancers()" class="form-select w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none text-slate-700">
                             <option value="">Todas as Áreas</option>
                         </select>
                     </div>
                     <div>
-                        <select id="filter-freelancer-rating" onchange="app.filterFreelancers()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none text-slate-700">
+                        <select id="filter-freelancer-rating" onchange="app.filterFreelancers()" class="form-select w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none text-slate-700">
                             <option value="">Todas Avaliações</option>
                             <option value="4.5">4.5+ Estrelas</option>
                             <option value="4.0">4.0+ Estrelas</option>
@@ -272,7 +273,7 @@
                         </select>
                     </div>
                     <div>
-                        <select id="filter-freelancer-exp" onchange="app.filterFreelancers()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none text-slate-700">
+                        <select id="filter-freelancer-exp" onchange="app.filterFreelancers()" class="form-select w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none text-slate-700">
                             <option value="">Qualquer Experiência</option>
                             <option value="Iniciante">Iniciante</option>
                             <option value="Pleno">Pleno</option>
@@ -338,7 +339,7 @@
                     <h3 class="font-bold text-slate-800 text-sm">Meus Projetos Publicados</h3>
                 </div>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs border-collapse">
+                    <table class="table align-middle mb-0 w-full text-left text-xs border-collapse">
                         <thead class="bg-slate-50 text-slate-500 font-semibold border-b border-slate-100">
                             <tr>
                                 <th class="p-4">Projeto</th>
@@ -476,7 +477,7 @@
                     <!-- Chat Footer / Input -->
                     <div class="p-3 border-t border-slate-200/80 bg-white">
                         <form id="chat-form" onsubmit="app.sendMessage(event)" class="flex gap-2">
-                            <input type="text" id="chat-input" placeholder="Digite sua mensagem..." disabled class="flex-grow px-4 py-2.5 bg-slate-100 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
+                            <input type="text" id="chat-input" placeholder="Digite sua mensagem..." disabled class="form-control flex-grow px-4 py-2.5 bg-slate-100 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
                             <button type="submit" id="chat-send-btn" disabled class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-xl shadow transition disabled:opacity-50">
                                 <i class="fa-solid fa-paper-plane"></i>
                             </button>
@@ -554,8 +555,8 @@
                 <!-- Admin Tab: Users -->
                 <div id="admin-tab-users" class="p-5 space-y-4">
                     <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
-                        <input type="text" id="admin-user-search" oninput="app.renderAdminUsers()" placeholder="Pesquisar por nome ou e-mail..." class="w-full sm:w-64 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-purple-500">
-                        <select id="admin-user-role-filter" onchange="app.renderAdminUsers()" class="w-full sm:w-48 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
+                        <input type="text" id="admin-user-search" oninput="app.renderAdminUsers()" placeholder="Pesquisar por nome ou e-mail..." class="form-control w-full sm:w-64 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-purple-500">
+                        <select id="admin-user-role-filter" onchange="app.renderAdminUsers()" class="form-select w-full sm:w-48 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
                             <option value="">Todos os Papéis</option>
                             <option value="client">Contratante</option>
                             <option value="freelancer">Freelancer</option>
@@ -563,7 +564,7 @@
                         </select>
                     </div>
                     <div class="overflow-x-auto">
-                        <table class="w-full text-left text-xs">
+                        <table class="table align-middle mb-0 w-full text-left text-xs">
                             <thead class="bg-slate-50 text-slate-500 border-b border-slate-200 font-semibold">
                                 <tr>
                                     <th class="p-3">Usuário</th>
@@ -583,7 +584,7 @@
                 <!-- Admin Tab: Projects -->
                 <div id="admin-tab-projects" class="p-5 hidden space-y-4">
                     <div class="overflow-x-auto">
-                        <table class="w-full text-left text-xs">
+                        <table class="table align-middle mb-0 w-full text-left text-xs">
                             <thead class="bg-slate-50 text-slate-500 border-b border-slate-200 font-semibold">
                                 <tr>
                                     <th class="p-3">Título do Projeto</th>
@@ -604,7 +605,7 @@
                 <!-- Admin Tab: Categories -->
                 <div id="admin-tab-categories" class="p-5 hidden space-y-4">
                     <form onsubmit="app.addNewCategory(event)" class="flex gap-2 max-w-md">
-                        <input type="text" id="new-category-input" required placeholder="Nova Categoria..." class="flex-grow px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-purple-500">
+                        <input type="text" id="new-category-input" required placeholder="Nova Categoria..." class="form-control flex-grow px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-purple-500">
                         <button type="submit" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs rounded-xl shadow">Adicionar</button>
                     </form>
                     <div id="admin-categories-tags" class="flex flex-wrap gap-2 pt-2">
@@ -622,7 +623,7 @@
                 <!-- Admin Tab: Admins -->
                 <div id="admin-tab-admins" class="p-5 hidden space-y-4">
                     <div class="overflow-x-auto">
-                        <table class="w-full text-left text-xs">
+                        <table class="table align-middle mb-0 w-full text-left text-xs">
                             <thead class="bg-slate-50 text-slate-500 border-b border-slate-200 font-semibold">
                                 <tr>
                                     <th class="p-3">Administrador</th>
@@ -665,37 +666,37 @@
             <form onsubmit="app.handlePublishProject(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Título do Projeto *</label>
-                    <input type="text" id="pub-title" required placeholder="Ex: Criação de E-commerce em React e Node.js" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
+                    <input type="text" id="pub-title" required placeholder="Ex: Criação de E-commerce em React e Node.js" class="form-control w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Categoria *</label>
-                        <select id="pub-category" required class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
+                        <select id="pub-category" required class="form-select w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
                             <!-- Dynamic options -->
                         </select>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Subcategoria</label>
-                        <input type="text" id="pub-subcategory" placeholder="Ex: Frontend / Fullstack" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
+                        <input type="text" id="pub-subcategory" placeholder="Ex: Frontend / Fullstack" class="form-control w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Orçamento Previsto (R$) *</label>
-                        <input type="number" id="pub-budget" required min="1" placeholder="Ex: 3500" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
+                        <input type="number" id="pub-budget" required min="1" placeholder="Ex: 3500" class="form-control w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Prazo Estimado (Dias) *</label>
-                        <input type="number" id="pub-deadline" required min="1" placeholder="Ex: 20" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
+                        <input type="number" id="pub-deadline" required min="1" placeholder="Ex: 20" class="form-control w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
                     </div>
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Habilidades Necessárias (separadas por vírgula) *</label>
-                    <input type="text" id="pub-skills" required placeholder="Ex: React, Tailwind CSS, TypeScript, REST API" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
+                    <input type="text" id="pub-skills" required placeholder="Ex: React, Tailwind CSS, TypeScript, REST API" class="form-control w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Descrição Detalhada do Serviço *</label>
-                    <textarea id="pub-description" required rows="4" placeholder="Descreva os objetivos, especificações técnicas e entregáveis esperados..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
+                    <textarea id="pub-description" required rows="4" placeholder="Descreva os objetivos, especificações técnicas e entregáveis esperados..." class="form-control w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
                 </div>
                 <div class="flex justify-end gap-2 pt-2">
                     <button type="button" onclick="app.closeModal('modal-publish-project')" class="px-4 py-2 bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium text-xs rounded-xl">Cancelar</button>
@@ -743,20 +744,20 @@
             <div id="detail-proposal-form-container" class="border-t border-slate-100 pt-4">
                 <h4 class="text-sm font-bold text-slate-900 mb-2">Enviar Proposta Profissional</h4>
                 <form onsubmit="app.handleSubmitProposal(event)" class="space-y-3">
-                    <input type="hidden" id="prop-project-id">
+                    <input type="hidden" id="prop-project-id" class="form-control">
                     <div class="grid grid-cols-2 gap-3">
                         <div>
                             <label class="block text-[11px] font-semibold text-slate-700 mb-1">Valor Proposto (R$) *</label>
-                            <input type="number" id="prop-amount" required min="1" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="number" id="prop-amount" required min="1" class="form-control w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                         <div>
                             <label class="block text-[11px] font-semibold text-slate-700 mb-1">Prazo de Entrega (Dias) *</label>
-                            <input type="number" id="prop-days" required min="1" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="number" id="prop-days" required min="1" class="form-control w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                     </div>
                     <div>
                         <label class="block text-[11px] font-semibold text-slate-700 mb-1">Mensagem de Apresentação / Proposta *</label>
-                        <textarea id="prop-message" required rows="3" placeholder="Explique por que você é o profissional ideal e como pretende realizar o projeto..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        <textarea id="prop-message" required rows="3" placeholder="Explique por que você é o profissional ideal e como pretende realizar o projeto..." class="form-control w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                     </div>
                     <div class="flex justify-end">
                         <button type="submit" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-xl shadow">
@@ -789,8 +790,8 @@
             <p class="text-xs text-slate-500 mb-4">Sua avaliação ajuda a manter a reputação e qualidade na comunidade.</p>
 
             <form onsubmit="app.handleSubmitReview(event)" class="space-y-4">
-                <input type="hidden" id="review-project-id">
-                <input type="hidden" id="review-target-user-id">
+                <input type="hidden" id="review-project-id" class="form-control">
+                <input type="hidden" id="review-target-user-id" class="form-control">
 
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-2">Nota (1 a 5 estrelas)</label>
@@ -801,12 +802,12 @@
                         <i class="fa-solid fa-star" onclick="app.setRatingStars(4)"></i>
                         <i class="fa-solid fa-star" onclick="app.setRatingStars(5)"></i>
                     </div>
-                    <input type="hidden" id="review-stars-val" value="5">
+                    <input type="hidden" id="review-stars-val" value="5" class="form-control">
                 </div>
 
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Comentário *</label>
-                    <textarea id="review-comment" required rows="3" placeholder="Conte como foi a experiência de trabalho com este profissional..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    <textarea id="review-comment" required rows="3" placeholder="Conte como foi a experiência de trabalho com este profissional..." class="form-control w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                 </div>
 
                 <div class="flex justify-end gap-2">
@@ -827,11 +828,11 @@
             <form onsubmit="app.handleLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">E-mail</label>
-                    <input type="email" id="login-email" required placeholder="seuemail@exemplo.com" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="email" id="login-email" required placeholder="seuemail@exemplo.com" class="form-control w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Senha (Simulada)</label>
-                    <input type="password" id="login-password" required value="123456" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="password" id="login-password" required value="123456" class="form-control w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <button type="submit" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-xl shadow transition">Entrar</button>
             </form>
@@ -849,15 +850,15 @@
             <form onsubmit="app.handleSignup(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Nome Completo</label>
-                    <input type="text" id="signup-name" required placeholder="Ex: Maria Santos" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="text" id="signup-name" required placeholder="Ex: Maria Santos" class="form-control w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">E-mail</label>
-                    <input type="email" id="signup-email" required placeholder="maria@exemplo.com" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="email" id="signup-email" required placeholder="maria@exemplo.com" class="form-control w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Perfil de Acesso *</label>
-                    <select id="signup-role" required class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
+                    <select id="signup-role" required class="form-select w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="client">Contratante (Quero publicar projetos)</option>
                         <option value="freelancer">Freelancer (Quero prestar serviços)</option>
                     </select>
@@ -878,11 +879,11 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Nome Profissional</label>
-                        <input type="text" id="edit-prof-name" required class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
+                        <input type="text" id="edit-prof-name" required class="form-control w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Área de Atuação</label>
-                        <select id="edit-prof-area" required class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
+                        <select id="edit-prof-area" required class="form-select w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
                             <!-- Injected dynamically -->
                         </select>
                     </div>
@@ -890,7 +891,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Nível de Experiência</label>
-                        <select id="edit-prof-exp" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
+                        <select id="edit-prof-exp" class="form-select w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
                             <option value="Iniciante">Iniciante</option>
                             <option value="Pleno">Pleno</option>
                             <option value="Sênior">Sênior</option>
@@ -898,20 +899,20 @@
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Valor por Hora (R$)</label>
-                        <input type="number" id="edit-prof-rate" placeholder="100" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
+                        <input type="number" id="edit-prof-rate" placeholder="100" class="form-control w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Habilidades (separadas por vírgula)</label>
-                    <input type="text" id="edit-prof-skills" placeholder="React, Node.js, Design, SEO" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="text" id="edit-prof-skills" placeholder="React, Node.js, Design, SEO" class="form-control w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Resumo / Descrição Profissional</label>
-                    <textarea id="edit-prof-bio" rows="3" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    <textarea id="edit-prof-bio" rows="3" class="form-control w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">URL da Foto de Perfil</label>
-                    <input type="url" id="edit-prof-avatar" placeholder="https://..." class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="url" id="edit-prof-avatar" placeholder="https://..." class="form-control w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div class="flex justify-end gap-2 pt-2">
                     <button type="button" onclick="app.closeModal('modal-edit-profile')" class="px-4 py-2 bg-slate-100 text-slate-600 hover:bg-slate-200 text-xs font-medium rounded-xl">Cancelar</button>
@@ -931,15 +932,15 @@
             <form onsubmit="app.handleRegisterAdmin(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Nome do Administrador</label>
-                    <input type="text" id="adm-name" required placeholder="Ex: Roberto Rocha" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-purple-500">
+                    <input type="text" id="adm-name" required placeholder="Ex: Roberto Rocha" class="form-control w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-purple-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">E-mail Institucional</label>
-                    <input type="email" id="adm-email" required placeholder="roberto.adm@freelahub.com" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-purple-500">
+                    <input type="email" id="adm-email" required placeholder="roberto.adm@freelahub.com" class="form-control w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-purple-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Setor Responsável</label>
-                    <select id="adm-sector" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-purple-500">
+                    <select id="adm-sector" class="form-select w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-purple-500">
                         <option value="Moderação & Suporte">Moderação & Suporte</option>
                         <option value="Tecnologia & Infraestrutura">Tecnologia & Infraestrutura</option>
                         <option value="Financeiro & Contratos">Financeiro & Contratos</option>
@@ -954,6 +955,7 @@
         </div>
     </div>
 
-    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="js/script.js" defer></script>
 </body>
 </html>

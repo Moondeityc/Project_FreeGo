@@ -1,6 +1,64 @@
-body { font-family: 'Inter', sans-serif; }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-        .star-rating { color: #f59e0b; }
+body {
+    font-family: 'Inter', sans-serif;
+    min-width: 320px;
+}
+
+.custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+.star-rating { color: #f59e0b; }
+
+/* Protege os fluxos da SPA durante a convivência temporária com Bootstrap e Tailwind. */
+.view-section { min-width: 0; }
+.view-section > *, .view-section article, .view-section .bg-white { min-width: 0; }
+#mobile-menu { max-height: calc(100vh - 4rem); overflow-y: auto; }
+#notification-toast { width: min(26rem, calc(100vw - 2rem)); }
+#notification-toast p { overflow-wrap: anywhere; }
+
+/* Tabelas continuam legíveis em telas estreitas, com rolagem horizontal local. */
+.view-section .overflow-x-auto { max-width: 100%; }
+.view-section table { min-width: 38rem; }
+
+/* Conversas usam altura flexível no celular e preservam o scroll da lista/mensagens. */
+#view-messages > .bg-white { min-height: 32rem; }
+
+/* Modais próprios do protótipo não usam o plugin Bootstrap; limite a altura e permita rolagem. */
+[id^="modal-"] {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+[id^="modal-"] > .bg-white {
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+}
+
+@media (max-width: 767.98px) {
+    main { padding-top: 1rem !important; padding-bottom: 1.5rem !important; }
+    #quick-switch-btn { max-width: 2.75rem; overflow: hidden; white-space: nowrap; }
+    #quick-switch-btn span { display: none; }
+    #quick-switch-menu { position: fixed; top: 4rem; right: .75rem; left: .75rem; width: auto; }
+    #auth-header-container { gap: .25rem; }
+    #view-home .relative.rounded-3xl { padding: 1.5rem; }
+    #view-messages > .bg-white { height: auto; min-height: calc(100vh - 8rem); }
+    #view-messages > .bg-white > div:first-child { max-height: 35vh; border-right: 0; border-bottom: 1px solid #e2e8f0; }
+    #chat-messages-box { min-height: 15rem; }
+    #tab-freelancer-proposals-btn, #tab-freelancer-active-btn, #tab-freelancer-reviews-btn { flex: 0 0 auto; }
+    #view-freelancer-dashboard .border-b.border-slate-100.px-5 { overflow-x: auto; }
+    #view-client-dashboard .p-5.border-b { align-items: flex-start; }
+    [id^="modal-"] { align-items: flex-start; }
+    [id^="modal-"] > .bg-white { margin-top: .5rem; margin-bottom: .5rem; padding: 1.25rem; }
+    .view-section table { min-width: 34rem; }
+}
+
+@media (max-width: 575.98px) {
+    #view-home h1 { font-size: 1.9rem; }
+    #view-home .flex.flex-wrap.gap-4 > button { width: 100%; justify-content: center; }
+    #view-projects > .bg-white, #view-freelancers > .bg-white { padding: 1rem; }
+    #view-admin .p-5 { padding: 1rem; }
+    #admin-tab-categories form { flex-direction: column; }
+    #admin-tab-categories form button { width: 100%; }
+    #view-freelancer-dashboard > .bg-white > .flex.items-center.gap-2 { flex-direction: column; align-items: stretch; }
+    #view-freelancer-dashboard > .bg-white > .flex.items-center.gap-2 button { justify-content: center; }
+    #chat-form button { flex: 0 0 auto; }
+}
