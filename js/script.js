@@ -189,10 +189,35 @@ const DEFAULT_CATEGORIES = [
         class FreelaHubApp {
             constructor() {
                 this.initStorage();
+                this.initTheme();
                 this.currentUser = this.loadCurrentUser();
                 this.currentView = 'home';
                 this.activeChatUserId = null;
                 this.activeChatProjectId = null;
+            }
+
+            initTheme() {
+                const isDark = localStorage.getItem('fh_theme') === 'dark';
+                document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+                this.updateThemeButton(isDark);
+            }
+
+            updateThemeButton(isDark) {
+                const button = document.getElementById('theme-toggle');
+                const icon = document.getElementById('theme-toggle-icon');
+                const label = document.getElementById('theme-toggle-label');
+                if (!button) return;
+                button.setAttribute('aria-label', isDark ? 'Ativar modo claro' : 'Ativar modo escuro');
+                button.title = isDark ? 'Ativar modo claro' : 'Ativar modo escuro';
+                if (icon) icon.className = `fa-solid ${isDark ? 'fa-sun' : 'fa-moon'}`;
+                if (label) label.textContent = isDark ? 'Modo claro' : 'Modo escuro';
+            }
+
+            toggleTheme() {
+                const isDark = document.documentElement.dataset.theme !== 'dark';
+                document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+                localStorage.setItem('fh_theme', isDark ? 'dark' : 'light');
+                this.updateThemeButton(isDark);
             }
 
             initStorage() {
