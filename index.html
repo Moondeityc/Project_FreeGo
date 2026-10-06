@@ -341,8 +341,8 @@
                 <div class="p-5 border-b border-slate-100 flex items-center justify-between">
                     <h3 class="font-bold text-slate-800 text-sm">Meus Projetos Publicados</h3>
                 </div>
-                <div class="overflow-x-auto">
-                    <table class="table align-middle mb-0 w-full text-left text-xs border-collapse">
+                <div id="client-projects-table-wrap" class="overflow-x-auto">
+                    <table id="client-projects-table" class="table align-middle mb-0 w-full text-left text-xs border-collapse">
                         <thead class="bg-slate-50 text-slate-500 font-semibold border-b border-slate-100">
                             <tr>
                                 <th class="p-4">Projeto</th>
@@ -647,17 +647,25 @@
 
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 mt-12 py-8 text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-2">
-                <span class="font-bold text-slate-800">FreeGo</span>
-                <span>&copy; 2026 — Protótipo Acadêmico sem fins lucrativos</span>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div>
+                <h2 class="font-bold text-slate-800 mb-2">Créditos do projeto</h2>
+                <p><span class="font-semibold text-slate-700">FreeGo</span> — projeto acadêmico desenvolvido na Fatec Itapetininga.</p>
+                <p class="mt-2">&copy; 2026 — Protótipo acadêmico sem fins lucrativos.</p>
             </div>
-            <div class="flex items-center gap-4">
-                <span>Totalmente executado via Browser (LocalStorage)</span>
+            <div>
+                <h2 class="font-bold text-slate-800 mb-2">Localização da central</h2>
+                <address class="not-italic">Fatec Itapetininga<br>Rua Dr. João Vieira de Camargo, 104 — Vila Barth<br>Itapetininga — SP, CEP 18205-600</address>
+            </div>
+            <div>
+                <h2 class="font-bold text-slate-800 mb-2">Avalie o projeto</h2>
+                <p class="mb-3">Sua opinião ajuda a avaliar o projeto desenvolvido em aula.</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdXB7Dg5u7kEti-Bs4_A8OCV35XBq_4_2U_31iEk-OS8CMdC9jw/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i> Avaliar projeto
+                </a>
             </div>
         </div>
     </footer>
-
     <!-- MODALS CONTAINER -->
     <!-- 1. Publish Project Modal -->
     <div id="modal-publish-project" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">

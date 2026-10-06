@@ -56,6 +56,25 @@ html[data-theme="dark"] { color-scheme: dark; }
 #notification-toast { width: min(26rem, calc(100vw - 2rem)); }
 #notification-toast p { overflow-wrap: anywhere; }
 
+/* No painel do contratante, cada projeto vira um cartão em telas até tablet. */
+@media (max-width: 991.98px) {
+    #client-projects-table-wrap { overflow: visible; padding: .75rem; }
+    #client-projects-table { display: block; min-width: 0; width: 100%; }
+    #client-projects-table thead { display: none; }
+    #client-projects-table tbody { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; }
+    #client-projects-table tbody tr { display: block; min-width: 0; padding: .5rem .875rem; border: 1px solid #e2e8f0; border-radius: .875rem; background: #fff; }
+    #client-projects-table tbody td { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; min-width: 0; padding: .625rem 0 !important; border: 0; border-bottom: 1px solid #f1f5f9; text-align: right; overflow-wrap: anywhere; }
+    #client-projects-table tbody td::before { content: attr(data-label); flex: 0 0 6.25rem; color: #64748b; font-weight: 600; text-align: left; }
+    #client-projects-table tbody td:last-child { border-bottom: 0; }
+    #client-projects-table tbody td[data-label="Ações"] { flex-wrap: wrap; justify-content: flex-start; text-align: left; }
+    #client-projects-table tbody td[data-label="Ações"]::before { flex-basis: 100%; }
+    #client-projects-table tbody td[data-label="Ações"] button { white-space: normal; }
+    #client-projects-table tbody tr td[colspan] { display: block; text-align: center; border: 0; }
+    #client-projects-table tbody tr td[colspan]::before { content: none; }
+    html[data-theme="dark"] #client-projects-table tbody tr { background: #1e293b; border-color: #334155; }
+    html[data-theme="dark"] #client-projects-table tbody td { border-color: #334155; }
+}
+
 /* Tabelas continuam legíveis em telas estreitas, com rolagem horizontal local. */
 .view-section .overflow-x-auto { max-width: 100%; }
 .view-section table { min-width: 38rem; }

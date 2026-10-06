@@ -610,12 +610,12 @@ const DEFAULT_CATEGORIES = [
                     const props = this.proposals.filter(pr => pr.projectId === p.id);
                     return `
                         <tr class="hover:bg-slate-50/80 transition">
-                            <td class="p-4 font-semibold text-slate-800">${p.title}</td>
-                            <td class="p-4 text-slate-600">${p.category}</td>
-                            <td class="p-4 font-bold text-slate-800">R$ ${p.budget.toLocaleString('pt-BR')}</td>
-                            <td class="p-4"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700">${p.status}</span></td>
-                            <td class="p-4"><span class="font-bold text-slate-800">${props.length}</span> propostas</td>
-                            <td class="p-4 text-right space-x-1">
+                            <td data-label="Projeto" class="p-4 font-semibold text-slate-800">${p.title}</td>
+                            <td data-label="Categoria" class="p-4 text-slate-600">${p.category}</td>
+                            <td data-label="Orçamento" class="p-4 font-bold text-slate-800">R$ ${p.budget.toLocaleString('pt-BR')}</td>
+                            <td data-label="Status" class="p-4"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700">${p.status}</span></td>
+                            <td data-label="Propostas" class="p-4"><span class="font-bold text-slate-800">${props.length}</span> propostas</td>
+                            <td data-label="Ações" class="p-4 text-right space-x-1">
                                 <button onclick="app.openProposalsModal('${p.id}')" class="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-[11px] font-medium shadow">
                                     Ver Propostas
                                 </button>
