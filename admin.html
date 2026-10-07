@@ -100,96 +100,155 @@
             <button onclick="app.hideToast()" class="ml-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
         </div>
 
-        <section id="view-home" class="view-section space-y-12">
-            <!-- Hero -->
-            <div class="relative rounded-3xl bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900 text-white overflow-hidden shadow-xl p-8 sm:p-12 lg:p-16">
-                <div class="relative z-10 max-w-2xl space-y-6">
-                    <span class="inline-block px-3 py-1 rounded-full bg-blue-500/30 text-blue-200 text-xs font-semibold tracking-wide border border-blue-400/20">
-                        <i class="fa-solid fa-graduation-cap mr-1"></i> Protótipo Acadêmico de Plataforma Web
-                    </span>
-                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                        Conecte-se com os melhores talentos freelancers
-                    </h1>
-                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                        Publique projetos, receba propostas competitivas e gerencie trabalhos em tempo real em uma interface moderna e integrada.
-                    </p>
-                    <div class="flex flex-wrap gap-4 pt-2">
-                        <button onclick="app.navigateTo('projects')" class="px-6 py-3 bg-white text-blue-700 hover:bg-blue-50 font-semibold rounded-xl shadow-lg transition flex items-center gap-2 text-sm">
-                            <i class="fa-solid fa-magnifying-glass"></i> Explorar Projetos
-                        </button>
-                        <button onclick="app.openPublishProjectModal()" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl border border-blue-400/40 shadow-lg transition flex items-center gap-2 text-sm">
-                            <i class="fa-solid fa-plus"></i> Publicar um Projeto
-                        </button>
+        <section id="view-admin" class="view-section space-y-6">
+            <!-- Header -->
+            <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-md flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 rounded-full bg-purple-500/30 text-purple-300 text-[10px] font-bold uppercase tracking-wider border border-purple-400/20">Modo Administrador</span>
+                        <span id="admin-sector-badge" class="text-xs text-slate-400">Setor: TI & Moderação</span>
                     </div>
+                    <h2 class="text-2xl font-bold mt-1" id="admin-welcome-name">Painel Administrativo</h2>
+                    <p class="text-xs text-slate-400">Gerenciamento completo, moderador de conteúdos e auditoria da plataforma</p>
+                </div>
+                <button onclick="app.openNewAdminModal()" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold rounded-xl transition flex items-center justify-center gap-2 shadow">
+                    <i class="fa-solid fa-user-plus"></i> Novo Administrador
+                </button>
+            </div>
+
+            <!-- Dashboard Stats Matrix -->
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                    <span class="text-[10px] font-semibold text-slate-400 uppercase">Total Usuários</span>
+                    <h4 class="text-xl font-bold text-slate-800 mt-1" id="kpi-users-total">0</h4>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                    <span class="text-[10px] font-semibold text-slate-400 uppercase">Contratantes</span>
+                    <h4 class="text-xl font-bold text-blue-600 mt-1" id="kpi-users-clients">0</h4>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                    <span class="text-[10px] font-semibold text-slate-400 uppercase">Freelancers</span>
+                    <h4 class="text-xl font-bold text-emerald-600 mt-1" id="kpi-users-freelas">0</h4>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                    <span class="text-[10px] font-semibold text-slate-400 uppercase">Projetos Total</span>
+                    <h4 class="text-xl font-bold text-slate-800 mt-1" id="kpi-projects-total">0</h4>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                    <span class="text-[10px] font-semibold text-slate-400 uppercase">Em Andamento</span>
+                    <h4 class="text-xl font-bold text-indigo-600 mt-1" id="kpi-projects-active">0</h4>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                    <span class="text-[10px] font-semibold text-slate-400 uppercase">Concluídos</span>
+                    <h4 class="text-xl font-bold text-emerald-600 mt-1" id="kpi-projects-completed">0</h4>
                 </div>
             </div>
 
-            <!-- Stats Bar -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-folder-open"></i>
-                    </div>
-                    <div>
-                        <h3 id="stat-total-projects" class="text-2xl font-bold text-slate-800">0</h3>
-                        <p class="text-xs text-slate-500 font-medium">Projetos Publicados</p>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-user-check"></i>
-                    </div>
-                    <div>
-                        <h3 id="stat-active-freelancers" class="text-2xl font-bold text-slate-800">0</h3>
-                        <p class="text-xs text-slate-500 font-medium">Freelancers Ativos</p>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-handshake"></i>
-                    </div>
-                    <div>
-                        <h3 id="stat-total-proposals" class="text-2xl font-bold text-slate-800">0</h3>
-                        <p class="text-xs text-slate-500 font-medium">Propostas Enviadas</p>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-circle-check"></i>
-                    </div>
-                    <div>
-                        <h3 id="stat-completed-projects" class="text-2xl font-bold text-slate-800">0</h3>
-                        <p class="text-xs text-slate-500 font-medium">Projetos Concluídos</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Categories Section -->
-            <div class="space-y-6">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h2 class="text-2xl font-bold text-slate-900">Categorias em Destaque</h2>
-                        <p class="text-sm text-slate-500">Encontre especialistas para cada tipo de demanda</p>
-                    </div>
-                </div>
-                <div id="home-categories-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-3">
-                    <!-- Dynamic categories -->
-                </div>
-            </div>
-
-            <!-- Recent Projects Section -->
-            <div class="space-y-6">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h2 class="text-2xl font-bold text-slate-900">Projetos Recentes</h2>
-                        <p class="text-sm text-slate-500">Oportunidades abertas para envio de propostas</p>
-                    </div>
-                    <button onclick="app.navigateTo('projects')" class="text-sm font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
-                        Ver Todos <i class="fa-solid fa-arrow-right text-xs"></i>
+            <!-- Admin Nav Tabs -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+                <div class="border-b border-slate-200 bg-slate-50/50 px-4 flex gap-4 overflow-x-auto">
+                    <button id="admin-tab-users-btn" onclick="app.switchAdminTab('users')" class="py-3 px-2 text-xs font-bold border-b-2 border-purple-600 text-purple-600 whitespace-nowrap">
+                        <i class="fa-solid fa-users mr-1"></i> Usuários
+                    </button>
+                    <button id="admin-tab-projects-btn" onclick="app.switchAdminTab('projects')" class="py-3 px-2 text-xs font-semibold text-slate-500 hover:text-slate-800 whitespace-nowrap">
+                        <i class="fa-solid fa-folder-tree mr-1"></i> Moderar Projetos
+                    </button>
+                    <button id="admin-tab-categories-btn" onclick="app.switchAdminTab('categories')" class="py-3 px-2 text-xs font-semibold text-slate-500 hover:text-slate-800 whitespace-nowrap">
+                        <i class="fa-solid fa-tags mr-1"></i> Categorias
+                    </button>
+                    <button id="admin-tab-logs-btn" onclick="app.switchAdminTab('logs')" class="py-3 px-2 text-xs font-semibold text-slate-500 hover:text-slate-800 whitespace-nowrap">
+                        <i class="fa-solid fa-clipboard-list mr-1"></i> Audit Trail / Logs
+                    </button>
+                    <button id="admin-tab-admins-btn" onclick="app.switchAdminTab('admins')" class="py-3 px-2 text-xs font-semibold text-slate-500 hover:text-slate-800 whitespace-nowrap">
+                        <i class="fa-solid fa-user-shield mr-1"></i> Equipe Admins
                     </button>
                 </div>
-                <div id="home-recent-projects" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Injected via JS -->
+
+                <!-- Admin Tab: Users -->
+                <div id="admin-tab-users" class="p-5 space-y-4">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <input type="text" id="admin-user-search" oninput="app.renderAdminUsers()" placeholder="Pesquisar por nome ou e-mail..." class="form-control w-full sm:w-64 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-purple-500">
+                        <select id="admin-user-role-filter" onchange="app.renderAdminUsers()" class="form-select w-full sm:w-48 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
+                            <option value="">Todos os Papéis</option>
+                            <option value="client">Contratante</option>
+                            <option value="freelancer">Freelancer</option>
+                            <option value="admin">Administrador</option>
+                        </select>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="table align-middle mb-0 w-full text-left text-xs">
+                            <thead class="bg-slate-50 text-slate-500 border-b border-slate-200 font-semibold">
+                                <tr>
+                                    <th class="p-3">Usuário</th>
+                                    <th class="p-3">E-mail</th>
+                                    <th class="p-3">Papel</th>
+                                    <th class="p-3">Status</th>
+                                    <th class="p-3 text-right">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-users-tbody" class="divide-y divide-slate-100">
+                                <!-- Injected JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Admin Tab: Projects -->
+                <div id="admin-tab-projects" class="p-5 hidden space-y-4">
+                    <div class="overflow-x-auto">
+                        <table class="table align-middle mb-0 w-full text-left text-xs">
+                            <thead class="bg-slate-50 text-slate-500 border-b border-slate-200 font-semibold">
+                                <tr>
+                                    <th class="p-3">Título do Projeto</th>
+                                    <th class="p-3">Contratante</th>
+                                    <th class="p-3">Categoria</th>
+                                    <th class="p-3">Orçamento</th>
+                                    <th class="p-3">Status</th>
+                                    <th class="p-3 text-right">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-projects-tbody" class="divide-y divide-slate-100">
+                                <!-- Injected JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Admin Tab: Categories -->
+                <div id="admin-tab-categories" class="p-5 hidden space-y-4">
+                    <form onsubmit="app.addNewCategory(event)" class="flex gap-2 max-w-md">
+                        <input type="text" id="new-category-input" required placeholder="Nova Categoria..." class="form-control flex-grow px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-purple-500">
+                        <button type="submit" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs rounded-xl shadow">Adicionar</button>
+                    </form>
+                    <div id="admin-categories-tags" class="flex flex-wrap gap-2 pt-2">
+                        <!-- Dynamic categories tags -->
+                    </div>
+                </div>
+
+                <!-- Admin Tab: Logs -->
+                <div id="admin-tab-logs" class="p-5 hidden">
+                    <div class="space-y-2 max-h-96 overflow-y-auto custom-scrollbar" id="admin-logs-list">
+                        <!-- Dynamic logs -->
+                    </div>
+                </div>
+
+                <!-- Admin Tab: Admins -->
+                <div id="admin-tab-admins" class="p-5 hidden space-y-4">
+                    <div class="overflow-x-auto">
+                        <table class="table align-middle mb-0 w-full text-left text-xs">
+                            <thead class="bg-slate-50 text-slate-500 border-b border-slate-200 font-semibold">
+                                <tr>
+                                    <th class="p-3">Administrador</th>
+                                    <th class="p-3">E-mail</th>
+                                    <th class="p-3">Setor Responsável</th>
+                                    <th class="p-3">Permissões</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-team-tbody" class="divide-y divide-slate-100">
+                                <!-- Injected JS -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>

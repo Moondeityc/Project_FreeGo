@@ -100,96 +100,70 @@
             <button onclick="app.hideToast()" class="ml-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
         </div>
 
-        <section id="view-home" class="view-section space-y-12">
-            <!-- Hero -->
-            <div class="relative rounded-3xl bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900 text-white overflow-hidden shadow-xl p-8 sm:p-12 lg:p-16">
-                <div class="relative z-10 max-w-2xl space-y-6">
-                    <span class="inline-block px-3 py-1 rounded-full bg-blue-500/30 text-blue-200 text-xs font-semibold tracking-wide border border-blue-400/20">
-                        <i class="fa-solid fa-graduation-cap mr-1"></i> Protótipo Acadêmico de Plataforma Web
-                    </span>
-                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                        Conecte-se com os melhores talentos freelancers
-                    </h1>
-                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                        Publique projetos, receba propostas competitivas e gerencie trabalhos em tempo real em uma interface moderna e integrada.
-                    </p>
-                    <div class="flex flex-wrap gap-4 pt-2">
-                        <button onclick="app.navigateTo('projects')" class="px-6 py-3 bg-white text-blue-700 hover:bg-blue-50 font-semibold rounded-xl shadow-lg transition flex items-center gap-2 text-sm">
-                            <i class="fa-solid fa-magnifying-glass"></i> Explorar Projetos
-                        </button>
-                        <button onclick="app.openPublishProjectModal()" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl border border-blue-400/40 shadow-lg transition flex items-center gap-2 text-sm">
-                            <i class="fa-solid fa-plus"></i> Publicar um Projeto
-                        </button>
-                    </div>
+        <section id="view-client-dashboard" class="view-section space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+                <div>
+                    <span class="text-xs font-semibold uppercase text-blue-600 tracking-wider">Painel do Contratante</span>
+                    <h2 class="text-2xl font-bold text-slate-900" id="client-dashboard-name">Olá, Ana Costa</h2>
+                    <p class="text-xs text-slate-500">Gerencie seus projetos publicados, propostas recebidas e contratações</p>
                 </div>
+                <button onclick="app.openPublishProjectModal()" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-plus"></i> Publicar Novo Projeto
+                </button>
             </div>
 
-            <!-- Stats Bar -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-folder-open"></i>
-                    </div>
+            <!-- Client Summary Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between">
                     <div>
-                        <h3 id="stat-total-projects" class="text-2xl font-bold text-slate-800">0</h3>
-                        <p class="text-xs text-slate-500 font-medium">Projetos Publicados</p>
+                        <p class="text-xs text-slate-500 font-medium">Projetos Ativos</p>
+                        <p class="text-2xl font-bold text-slate-800" id="client-stat-active">0</p>
+                    </div>
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                        <i class="fa-solid fa-folder"></i>
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-user-check"></i>
-                    </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between">
                     <div>
-                        <h3 id="stat-active-freelancers" class="text-2xl font-bold text-slate-800">0</h3>
-                        <p class="text-xs text-slate-500 font-medium">Freelancers Ativos</p>
+                        <p class="text-xs text-slate-500 font-medium">Propostas em Análise</p>
+                        <p class="text-2xl font-bold text-slate-800" id="client-stat-proposals">0</p>
+                    </div>
+                    <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+                        <i class="fa-solid fa-paper-plane"></i>
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-handshake"></i>
-                    </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between">
                     <div>
-                        <h3 id="stat-total-proposals" class="text-2xl font-bold text-slate-800">0</h3>
-                        <p class="text-xs text-slate-500 font-medium">Propostas Enviadas</p>
+                        <p class="text-xs text-slate-500 font-medium">Projetos Concluídos</p>
+                        <p class="text-2xl font-bold text-slate-800" id="client-stat-completed">0</p>
                     </div>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
                         <i class="fa-solid fa-circle-check"></i>
                     </div>
-                    <div>
-                        <h3 id="stat-completed-projects" class="text-2xl font-bold text-slate-800">0</h3>
-                        <p class="text-xs text-slate-500 font-medium">Projetos Concluídos</p>
-                    </div>
                 </div>
             </div>
 
-            <!-- Categories Section -->
-            <div class="space-y-6">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h2 class="text-2xl font-bold text-slate-900">Categorias em Destaque</h2>
-                        <p class="text-sm text-slate-500">Encontre especialistas para cada tipo de demanda</p>
-                    </div>
+            <!-- Client Projects Table/List -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+                <div class="p-5 border-b border-slate-100 flex items-center justify-between">
+                    <h3 class="font-bold text-slate-800 text-sm">Meus Projetos Publicados</h3>
                 </div>
-                <div id="home-categories-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-3">
-                    <!-- Dynamic categories -->
-                </div>
-            </div>
-
-            <!-- Recent Projects Section -->
-            <div class="space-y-6">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h2 class="text-2xl font-bold text-slate-900">Projetos Recentes</h2>
-                        <p class="text-sm text-slate-500">Oportunidades abertas para envio de propostas</p>
-                    </div>
-                    <button onclick="app.navigateTo('projects')" class="text-sm font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
-                        Ver Todos <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </button>
-                </div>
-                <div id="home-recent-projects" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Injected via JS -->
+                <div id="client-projects-table-wrap" class="overflow-x-auto">
+                    <table id="client-projects-table" class="table align-middle mb-0 w-full text-left text-xs border-collapse">
+                        <thead class="bg-slate-50 text-slate-500 font-semibold border-b border-slate-100">
+                            <tr>
+                                <th class="p-4">Projeto</th>
+                                <th class="p-4">Categoria</th>
+                                <th class="p-4">Orçamento</th>
+                                <th class="p-4">Status</th>
+                                <th class="p-4">Propostas</th>
+                                <th class="p-4 text-right">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="client-projects-tbody" class="divide-y divide-slate-100">
+                            <!-- Injected via JS -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>

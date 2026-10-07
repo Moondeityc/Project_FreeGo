@@ -236,9 +236,21 @@ const DEFAULT_CATEGORIES = [
                 this.initStorage();
                 this.initTheme();
                 this.currentUser = this.loadCurrentUser();
-                this.currentView = 'home';
-                this.activeChatUserId = null;
-                this.activeChatProjectId = null;
+                this.currentView = this.getCurrentView();
+                this.activeChatUserId = sessionStorage.getItem('fh_pending_chat_user');
+                this.activeChatProjectId = sessionStorage.getItem('fh_pending_chat_project');
+            }
+
+            getCurrentView() {
+                const pageViews = {
+                    'projects.html': 'projects',
+                    'freelancers.html': 'freelancers',
+                    'client-dashboard.html': 'client-dashboard',
+                    'freelancer-dashboard.html': 'freelancer-dashboard',
+                    'messages.html': 'messages',
+                    'admin.html': 'admin'
+                };
+                return pageViews[window.location.pathname.split('/').pop()] || 'home';
             }
 
             initTheme() {
@@ -372,16 +384,25 @@ const DEFAULT_CATEGORIES = [
             }
 
             navigateTo(viewName) {
-                this.currentView = viewName;
-                document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
-
-                const targetView = document.getElementById(`view-${viewName}`);
-                if (targetView) targetView.classList.remove('hidden');
-
-                this.renderNav();
-                this.refreshCurrentView();
-                document.getElementById('mobile-menu')?.classList.add('hidden');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                const pageFiles = {
+                    home: 'index.html',
+                    projects: 'projects.html',
+                    freelancers: 'freelancers.html',
+                    'client-dashboard': 'client-dashboard.html',
+                    'freelancer-dashboard': 'freelancer-dashboard.html',
+                    messages: 'messages.html',
+                    admin: 'admin.html'
+                };
+                const destination = pageFiles[viewName] || pageFiles.home;
+                if (window.location.pathname.endsWith(`/${destination}`) || window.location.pathname === `/${destination}`) {
+                    this.currentView = viewName;
+                    this.renderNav();
+                    this.refreshCurrentView();
+                    document.getElementById('mobile-menu')?.classList.add('hidden');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+                window.location.href = destination;
             }
 
             refreshCurrentView() {
@@ -472,16 +493,18 @@ const DEFAULT_CATEGORIES = [
             }
 
             filterCategoryRedirect(cat) {
+                localStorage.setItem('fh_pending_project_category', cat);
                 this.navigateTo('projects');
-                const sel = document.getElementById('filter-project-category');
-                if (sel) {
-                    sel.value = cat;
-                    this.filterProjects();
-                }
             }
 
             renderProjectsFeed() {
                 this.populateCategorySelects();
+                const pendingCategory = localStorage.getItem('fh_pending_project_category');
+                if (pendingCategory) {
+                    const categorySelect = document.getElementById('filter-project-category');
+                    if (categorySelect) categorySelect.value = pendingCategory;
+                    localStorage.removeItem('fh_pending_project_category');
+                }
                 this.filterProjects();
             }
 
@@ -819,6 +842,9 @@ const DEFAULT_CATEGORIES = [
             startChatWith(targetUserId, projectId = null) {
                 this.activeChatUserId = targetUserId;
                 this.activeChatProjectId = projectId;
+                sessionStorage.setItem('fh_pending_chat_user', targetUserId);
+                if (projectId) sessionStorage.setItem('fh_pending_chat_project', projectId);
+                else sessionStorage.removeItem('fh_pending_chat_project');
                 this.navigateTo('messages');
                 this.renderMessages();
             }
@@ -1427,5 +1453,10 @@ const DEFAULT_CATEGORIES = [
         let app;
         window.addEventListener('DOMContentLoaded', () => {
             app = new FreelaHubApp();
-            app.navigateTo('home');
+            app.renderNav();
+            app.refreshCurrentView();
+            if (app.currentView === 'messages') {
+                sessionStorage.removeItem('fh_pending_chat_user');
+                sessionStorage.removeItem('fh_pending_chat_project');
+            }
         });

@@ -100,96 +100,50 @@
             <button onclick="app.hideToast()" class="ml-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
         </div>
 
-        <section id="view-home" class="view-section space-y-12">
-            <!-- Hero -->
-            <div class="relative rounded-3xl bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900 text-white overflow-hidden shadow-xl p-8 sm:p-12 lg:p-16">
-                <div class="relative z-10 max-w-2xl space-y-6">
-                    <span class="inline-block px-3 py-1 rounded-full bg-blue-500/30 text-blue-200 text-xs font-semibold tracking-wide border border-blue-400/20">
-                        <i class="fa-solid fa-graduation-cap mr-1"></i> Protótipo Acadêmico de Plataforma Web
-                    </span>
-                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                        Conecte-se com os melhores talentos freelancers
-                    </h1>
-                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                        Publique projetos, receba propostas competitivas e gerencie trabalhos em tempo real em uma interface moderna e integrada.
-                    </p>
-                    <div class="flex flex-wrap gap-4 pt-2">
-                        <button onclick="app.navigateTo('projects')" class="px-6 py-3 bg-white text-blue-700 hover:bg-blue-50 font-semibold rounded-xl shadow-lg transition flex items-center gap-2 text-sm">
-                            <i class="fa-solid fa-magnifying-glass"></i> Explorar Projetos
-                        </button>
-                        <button onclick="app.openPublishProjectModal()" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl border border-blue-400/40 shadow-lg transition flex items-center gap-2 text-sm">
-                            <i class="fa-solid fa-plus"></i> Publicar um Projeto
-                        </button>
+        <section id="view-messages" class="view-section space-y-4">
+            <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col md:flex-row h-[650px]">
+                <!-- Conversations Sidebar -->
+                <div class="w-full md:w-80 border-r border-slate-200/80 flex flex-col bg-slate-50/50">
+                    <div class="p-4 border-b border-slate-200/80 flex items-center justify-between">
+                        <h3 class="font-bold text-slate-800 text-sm">Mensagens</h3>
+                        <span id="unread-total-badge" class="px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full">0 novas</span>
+                    </div>
+                    <div id="conversations-list" class="flex-grow overflow-y-auto divide-y divide-slate-100 custom-scrollbar">
+                        <!-- Dynamic list -->
                     </div>
                 </div>
-            </div>
 
-            <!-- Stats Bar -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-folder-open"></i>
+                <!-- Active Chat Thread -->
+                <div class="flex-grow flex flex-col bg-white">
+                    <div id="chat-header" class="p-4 border-b border-slate-200/80 flex items-center justify-between bg-slate-50/30">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm" id="chat-header-avatar">
+                                ?
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm" id="chat-header-name">Selecione uma conversa</h4>
+                                <p class="text-[11px] text-slate-500" id="chat-header-project">Selecione um contato ao lado para interagir</p>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h3 id="stat-total-projects" class="text-2xl font-bold text-slate-800">0</h3>
-                        <p class="text-xs text-slate-500 font-medium">Projetos Publicados</p>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-user-check"></i>
-                    </div>
-                    <div>
-                        <h3 id="stat-active-freelancers" class="text-2xl font-bold text-slate-800">0</h3>
-                        <p class="text-xs text-slate-500 font-medium">Freelancers Ativos</p>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-handshake"></i>
-                    </div>
-                    <div>
-                        <h3 id="stat-total-proposals" class="text-2xl font-bold text-slate-800">0</h3>
-                        <p class="text-xs text-slate-500 font-medium">Propostas Enviadas</p>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-circle-check"></i>
-                    </div>
-                    <div>
-                        <h3 id="stat-completed-projects" class="text-2xl font-bold text-slate-800">0</h3>
-                        <p class="text-xs text-slate-500 font-medium">Projetos Concluídos</p>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Categories Section -->
-            <div class="space-y-6">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h2 class="text-2xl font-bold text-slate-900">Categorias em Destaque</h2>
-                        <p class="text-sm text-slate-500">Encontre especialistas para cada tipo de demanda</p>
+                    <!-- Chat Box Body -->
+                    <div id="chat-messages-box" class="flex-grow p-4 overflow-y-auto space-y-3 custom-scrollbar bg-slate-50/20">
+                        <div class="text-center py-20 text-slate-400 text-xs">
+                            <i class="fa-regular fa-comments text-4xl block mb-2 opacity-50"></i>
+                            Escolha uma mensagem para visualizar o histórico de conversa.
+                        </div>
                     </div>
-                </div>
-                <div id="home-categories-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-3">
-                    <!-- Dynamic categories -->
-                </div>
-            </div>
 
-            <!-- Recent Projects Section -->
-            <div class="space-y-6">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h2 class="text-2xl font-bold text-slate-900">Projetos Recentes</h2>
-                        <p class="text-sm text-slate-500">Oportunidades abertas para envio de propostas</p>
+                    <!-- Chat Footer / Input -->
+                    <div class="p-3 border-t border-slate-200/80 bg-white">
+                        <form id="chat-form" onsubmit="app.sendMessage(event)" class="flex gap-2">
+                            <input type="text" id="chat-input" placeholder="Digite sua mensagem..." disabled class="form-control flex-grow px-4 py-2.5 bg-slate-100 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 outline-none">
+                            <button type="submit" id="chat-send-btn" disabled class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-xl shadow transition disabled:opacity-50">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
                     </div>
-                    <button onclick="app.navigateTo('projects')" class="text-sm font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
-                        Ver Todos <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </button>
-                </div>
-                <div id="home-recent-projects" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Injected via JS -->
                 </div>
             </div>
         </section>
