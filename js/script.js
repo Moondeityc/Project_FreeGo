@@ -162,6 +162,51 @@ const DEFAULT_CATEGORIES = [
                 text: "Ótimo Marcos! Já montei o board inicial no Figma. Enviarei o link para primeira análise até amanhã.",
                 timestamp: "2026-02-26 14:42",
                 read: true
+            },
+            {
+                id: "msg_demo_3",
+                projectId: "proj_1",
+                senderId: "usr_client_1",
+                receiverId: "usr_freela_1",
+                text: "Olá, Carlos! Vi sua proposta para o e-commerce. Podemos conversar sobre as etapas e a integração com pagamentos?",
+                timestamp: "2026-03-02 09:15",
+                read: true
+            },
+            {
+                id: "msg_demo_4",
+                projectId: "proj_1",
+                senderId: "usr_freela_1",
+                receiverId: "usr_client_1",
+                text: "Claro, Ana! Sugiro começarmos pelo catálogo e checkout. Posso apresentar um cronograma detalhado ainda hoje.",
+                timestamp: "2026-03-02 09:22",
+                read: true
+            },
+            {
+                id: "msg_demo_5",
+                projectId: null,
+                senderId: "usr_admin_1",
+                receiverId: "usr_freela_3",
+                text: "Olá, Roberto. Estamos apurando um relato que levou ao bloqueio temporário da sua conta. Você pode nos enviar mais informações sobre o ocorrido?",
+                timestamp: "2026-03-03 10:05",
+                read: true
+            },
+            {
+                id: "msg_demo_6",
+                projectId: null,
+                senderId: "usr_freela_3",
+                receiverId: "usr_admin_1",
+                text: "Olá. Não fui informado sobre o motivo do bloqueio. Podem compartilhar os detalhes para que eu esclareça a situação?",
+                timestamp: "2026-03-03 10:18",
+                read: true
+            },
+            {
+                id: "msg_demo_7",
+                projectId: null,
+                senderId: "usr_admin_1",
+                receiverId: "usr_freela_3",
+                text: "Estamos verificando a denúncia e os registros da plataforma antes de concluir a análise. O bloqueio permanece temporário enquanto ouvimos os envolvidos.",
+                timestamp: "2026-03-03 10:24",
+                read: true
             }
         ];
 
@@ -232,6 +277,14 @@ const DEFAULT_CATEGORIES = [
                 }
                 if (!localStorage.getItem('fh_messages')) {
                     localStorage.setItem('fh_messages', JSON.stringify(SEED_MESSAGES));
+                } else {
+                    // Add new demo threads to existing browsers without replacing real conversations.
+                    const savedMessages = JSON.parse(localStorage.getItem('fh_messages')) || [];
+                    const savedIds = new Set(savedMessages.map(message => message.id));
+                    const missingExamples = SEED_MESSAGES.filter(message => message.id.startsWith('msg_demo_') && !savedIds.has(message.id));
+                    if (missingExamples.length) {
+                        localStorage.setItem('fh_messages', JSON.stringify([...savedMessages, ...missingExamples]));
+                    }
                 }
                 if (!localStorage.getItem('fh_reviews')) {
                     localStorage.setItem('fh_reviews', JSON.stringify(SEED_REVIEWS));
@@ -782,7 +835,8 @@ const DEFAULT_CATEGORIES = [
 
                 document.getElementById('chat-header-name').textContent = target.name;
                 document.getElementById('chat-header-avatar').textContent = target.name.charAt(0);
-                document.getElementById('chat-header-project').textContent = target.role === 'freelancer' ? `Freelancer (${target.area || ''})` : 'Contratante';
+                const roleLabels = { client: 'Contratante', freelancer: `Freelancer (${target.area || ''})`, admin: 'Administrador' };
+                document.getElementById('chat-header-project').textContent = roleLabels[target.role] || 'Contato';
 
                 document.getElementById('chat-input').disabled = false;
                 document.getElementById('chat-send-btn').disabled = false;

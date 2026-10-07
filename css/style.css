@@ -37,6 +37,22 @@ html[data-theme="dark"] option { color: #e2e8f0; background: #1e293b; }
 html[data-theme="dark"] table { color: #cbd5e1; }
 html[data-theme="dark"] thead,
 html[data-theme="dark"] .bg-slate-50\/50 { background-color: #172334 !important; }
+/* Bootstrap assigns its own background to table cells, which overrides the
+   dark surface on the surrounding list container. */
+html[data-theme="dark"] .table > :not(caption) > * > * {
+    color: #cbd5e1 !important;
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+}
+html[data-theme="dark"] .table > thead > * > * {
+    color: #94a3b8 !important;
+    background-color: #172334 !important;
+}
+html[data-theme="dark"] .list-group-item {
+    color: #cbd5e1;
+    background-color: #1e293b;
+    border-color: #334155;
+}
 html[data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-track { background: #1e293b; }
 html[data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
 html[data-theme="dark"] #theme-toggle { color: #e2e8f0; background-color: #334155; }
